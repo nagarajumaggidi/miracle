@@ -1,0 +1,66 @@
+<app-inner-header></app-inner-header>
+<app-blocked-users-popup></app-blocked-users-popup>
+
+<div class="inner-page-wrapper">
+  <div class="container lg">
+
+    <div class="row">
+      <div class="col2 family_left_content">
+        <div class="page_info">
+          <h3>Blocked Users</h3>
+          <!-- <p>Lorem Ipsum is simply dummy</p> -->
+        </div>
+
+        <app-admin-menu></app-admin-menu>
+      </div>
+
+      <div class="col10">
+        <div class="static_position">
+          <div class="family-profile-detail sidebar">
+            <div class="relative_position">
+              <ng-scrollbar>
+                <div class="sidebar-content">
+                  <div class="profile-image" (click)="openLetterProfileViewPopup()">
+                    <span class="cyan_strip">Organization</span>
+                    <img src="assets/images/sidebar-image.png" alt="">
+                  </div>
+                  <div class="profile-content">
+                    <div class="address-block">
+                      <h3>Jpe Melanu</h3>
+                      <p>California</p>
+                    </div>
+                    <p class="description">Profile Bio</p>
+                    <ul>
+                      <!-- <li>
+                        <h4>Letter</h4>
+                        <img [src]="elfData.santa_letter" alt="">
+                      </li> -->
+                      <li>
+                        <h4>Family Information</h4>
+                        <p>1 boy, 1 girl</p>
+                      </li>
+                      <li>
+                        <h4>Budget (Per Child)</h4>
+                        <p>$25</p>
+                      </li>
+                      <li>
+                        <h4>Organization Preferences</h4>
+                        <p>No Preferences</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+               
+              </ng-scrollbar>
+            </div>
+            
+         
+          </div>
+        </div>
+       
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<app-inner-header></app-inner-header>
+
+<div class="inner-page-wrapper">
+  <div class="container lg">
+    <div class="row">
+      <div class="col2 family_left_content">
+        <div class="page_info">
+          <h3>Family Signed Up</h3>
+          <!-- <p>Lorem Ipsum is simply dummy</p> -->
+        </div>
+
+        <app-admin-menu></app-admin-menu>
+      </div>
+
+      <div class="col10">
+
+        <div class="search-bar">
+          <div class="search_left">
+            <i><img src="assets/images/search.svg" alt=""></i>
+            <!-- <input type="text" placeholder="Search with Name" [(ngModel)]="searchValue"> -->
+            <input type="text" placeholder="Search with Name">
+          </div>
+          <button class="search_btn" (click)="openFilterSidebar()">
+            <i>
+              <img src="assets/images/filter-icon.svg" alt="">
+              <!-- <em class="count">2</em>[routerLink]="['/admin/family-signed-up/profile']" -->
+            </i>Filter
+          </button>
+        </div>
+
+
+        <div class="info-wrapper">
+          <!-- <div class="user-info-detail" *ngFor="let families of signedUpFamilies|signedup:searchValue | paginate: { itemsPerPage: 6, currentPage: p }"> -->
+           <div class="user-info-detail" *ngFor="let families of signedUpFamilies | paginate: { itemsPerPage: 6, currentPage: p }">
+            <div *ngIf="signedUpFamilies.length">
+              <a  (click)="getnewfamilysbyid(families)" class="img-block">
+                <div class="img-inner">
+                  <img src={{families.photo}} alt="">
+                </div>
+                <span class="cyan_strip">{{ families.organisation }}</span>
+              </a>
+              <a   (click)="getnewfamilysbyid(families)"  class="address-block">
+                <h3>{{ families.name }}</h3>
+                <p>{{ families.state }}</p>
+                <div class="btn_block">
+                  <button class="btn grey-button" (click)="declineFamily(families)">Decline</button>
+                  <button class="btn orange-button" (click)="approveFamily(families)">Approve</button>
+                </div>
+              </a>
+              <ngx-loading *ngIf="signedUpFamilies.length" [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+            </div>
+          </div>
+          
+         <span class="nodata" *ngIf="signedUpFamilies.length == 0" style="color: red;">No data found</span>
+          <!-- <h2 class="nodata" *ngIf="(signedUpFamilies | signedup: searchValue)?.length==0" style="color: red">Data not found</h2> -->
+        </div>
+        <pagination-controls  autoHide="true" class="stylePagination" responsive="true" (pageChange)="p = $event"></pagination-controls>
+      </div>
+
+    </div>
+  </div>
+</div>

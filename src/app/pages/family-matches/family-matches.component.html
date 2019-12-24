@@ -1,0 +1,91 @@
+<app-inner-header></app-inner-header>
+<div class="inner-page-wrapper">
+  <div class="container lg">
+
+    <div class="row">
+      <div class="col2 family_left_content">
+
+        <div class="page_info">
+          <h3>My Matches</h3>
+          <p>Congratulations! These are your matches. Click on the gift icon once you have sent your gift to notify your family. If you do not fulfill your letter within 10 days of match, your family will be matched with another elf.</p>
+        </div>
+
+        <div class="family_left_content_outer">
+          <div class="user_info_outer">
+            <i class="dp"><img [src]="image" alt=""></i>
+            <div class="user_info">
+              <h4>{{user}}</h4>
+              <p>{{locations}}</p>
+            </div>
+          </div>
+          <ul class="match_conversations">  
+            <li>
+              <i><img src="assets/images/heart-red.svg" alt=""></i>
+              <span class="count">{{elfdata.total_matches}}</span>
+              <p>Matches</p>
+            </li>
+            <li>
+              <i><img src="assets/images/chat-red.svg" alt=""></i>
+              <span class="count">{{elfdata.total_conversations}}</span>
+              <p>Conversations</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="family_left_content_outer">
+          <h4>New Family Matches</h4>
+          <ul class="matched_familes">
+            <li *ngFor ="let data of elfmatchdata">
+              <a href="javascript:void(0)" class="user_with_status">
+                  <i><img src={{data.photo}} alt=""></i>
+                  <em class="status"></em>
+                </a>   
+            </li>
+          </ul>    
+       
+          <!-- <ul class="conversations_list">
+            <li *ngFor="let list of conversationsList">
+              <a href="javascript:void(0)">
+                <div class="user_with_status">
+                  <i><img src={{list.img}} alt=""></i>
+                  <em class="status" *ngIf='list.status'></em>
+                </div>
+                <div class="conversations_details">
+                  <div class="name">
+                    <h4>{{ list.username }}</h4>
+                    <span class="time">{{list.time}}</span>
+                  </div>
+                  <p>{{list.chat}}</p>
+                </div>
+              </a>
+            </li>
+          </ul> -->
+        </div>
+      </div>
+      <div class="col10 family_listing">
+        <app-search-bar></app-search-bar>
+        <div class="info-wrapper">
+          <div class="user-info-detail" *ngFor ="let data of elfmatchdata">
+            <div class="img-block">
+              <a [routerLink]="['/family-matches/profile',data.id]">
+                <img src={{data.photo}} alt="">   
+               </a>
+              <span class="cyan_strip">{{data.organisation}}</span>
+              <span class="cyan_strip truncated blue" title="Matched">Matched</span>
+            </div>
+            <a [routerLink]="['/family-matches/profile',data.id]" class="address-block">
+              <h3>{{data.name}}</h3>
+              <p>{{data.city}} {{data.state}}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ <div class="col10">
+    <div class="static_position">
+      <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+  </div>
+ </div>
+</div>
+

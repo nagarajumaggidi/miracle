@@ -1,0 +1,158 @@
+<app-inner-header></app-inner-header>
+
+<div class="inner-page-wrapper">
+  <div class="container lg">
+    <div class="row">
+      <div class="col2 family_left_content">
+        <div class="page_info">
+          <h3>Dashboard</h3>
+          <!-- <p>Lorem Ipsum is simply dummy</p> -->
+        </div>
+        <app-admin-menu></app-admin-menu>
+      </div>
+
+      <div class="col8 family_left_content">
+        <div class="family_left_content_outer">
+          <div class="title_block">
+            <h3>User Analytics</h3>
+            <div class="analytics_time">
+              <select class="custom_select">
+                <option value="Week">Week</option>
+                <option value="Month">Month</option>
+                <option value="Year">Year</option>
+              </select>
+            </div>
+          </div>
+          <ul class="analytics_info">
+            <li>
+              <h4>Total families</h4>
+              <p>{{total_family_count}}</p>
+            </li>
+            <li>
+              <h4>Total Elf’s</h4>
+              <p>{{total_elf_count}}</p>
+            </li>
+            <li>
+              <h4>Matched families</h4>
+              <p>{{matched_family_count}}</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="family-signed-matched-wrapper">
+          <div class="family-signed-matched-outer">
+            <div class="inner-content">
+              <div class="title_block">
+                <h4>Family Signed Up</h4>
+                <a [routerLink]="['/admin/family-signed-up']" class="see_all" title="See All">See All</a>
+              </div>
+              <div class="signed_matched_families_listing">
+                <ul>
+                  <li *ngFor="let signedFamilies of signedUpFamilies | paginate: {id:'pagination5',itemsPerPage: 3, currentPage: p }">
+                    <div class="content">
+                      <div class="dp"><i><img src={{signedFamilies.photo}} alt=""></i></div>
+                      <div class="info"><strong>{{signedFamilies.name}}</strong> has signed up as a Family.</div>
+                    </div>
+                    <div class="btn_block">
+                      <button class="btn grey-button" (click)="declineFamily(signedFamilies)">Decline</button>
+                      <button class="btn orange-button" (click)="approveFamily(signedFamilies)">Approve</button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"
+                ></ngx-loading>
+                <pagination-controls id="pagination5" autoHide="true" class="my-pagination" responsive="true" (pageChange)="p = $event" previousLabel=""
+                nextLabel=""></pagination-controls>
+            </div>
+          </div>
+
+          <div class="family-signed-matched-outer">
+            <div class="inner-content">
+              <div class="title_block">
+                <h4>New Matched Families</h4>
+                <a [routerLink]="['/admin/matched-families']" class="see_all" title="See All">See All</a>
+              </div>
+              <div class="signed_matched_families_listing">
+                <ul>
+                  <li *ngFor="let matchedFamilies of matchedProfiles | paginate:{ id:'pagination7',itemsPerPage: 3, currentPage:s }">
+                    <div class="content matched">
+                      <div class="dp">
+                        <i><img src={{matchedFamilies.photo}} alt=""></i>
+                        <i><img src={{matchedFamilies.elf_photo}} alt=""></i>
+                      </div>
+                      <div class="info"><strong>{{matchedFamilies.name}}</strong> matched with
+                        <strong>{{matchedFamilies.elf_name}}</strong></div>
+                    </div>
+                    <div class="btn_block">
+                      <button class="btn grey-button">Flag</button>
+                      <button class="btn orange-button">Message</button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"
+               ></ngx-loading>
+                <pagination-controls id="pagination7" class="my-pagination" autoHide="true" responsive="true" (pageChange)="s = $event" previousLabel=""
+                nextLabel=""></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col2 family_left_content">
+        <div class="family_left_content_outer">
+          <div class="title_block">
+            <h4>Conversations</h4>
+            <!-- <a href="javascript:void(0)" class="see_all" title="See All">See All</a> -->
+
+          </div>
+          <p>Coming soon</p>
+
+          <!-- <ul class="conversations_list">
+            <li *ngFor="let list of conversationsList">
+              <a href="javascript:void(0)">
+                <div class="user_with_status">
+                  <i><img src={{list.img}} alt=""></i>
+                  <em class="status" *ngIf='list.status'></em>
+                </div>
+                <div class="conversations_details">
+                  <div class="name">
+                    <h4>{{ list.username }}</h4>
+                    <span class="time">{{list.time}}</span>
+                  </div>
+                  <p>{{list.chat}}</p>
+                </div>
+              </a>
+            </li>
+          </ul> -->
+        </div>
+
+        <div class="family_left_content_outer">
+          <div class="title_block">
+            <h4>Activity</h4>
+            <!-- <a href="javascript:void(0)" class="see_all" title="See All">See All</a> -->
+          </div>
+          <!-- <ul class="conversations_list">
+            <li *ngFor="let list of conversationsList">
+              <a href="javascript:void(0)">
+                <div class="user_with_status">
+                  <i><img src={{list.img}} alt=""></i>
+                  <em class="status" *ngIf='list.status'></em>
+                </div>
+                <div class="conversations_details">
+                  <div class="name">
+                    <h4>{{ list.username }}</h4>
+                    <span class="time">{{list.time}}</span>
+                  </div>
+                  <p>{{list.chat}}</p>
+                </div>
+              </a>
+            </li>
+          </ul> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

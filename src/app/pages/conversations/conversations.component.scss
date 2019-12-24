@@ -1,0 +1,39 @@
+@import 'break-points';
+
+.container{
+    &.lg {
+        .row {
+            .col8{
+                width: 50%;
+            }
+            .col2{
+                width: 25%;
+                
+            }
+        }
+    }
+}
+.chat-box-wrapper{
+    .chat-box {
+        .chat-box-header{
+            @include bp(lg-max){
+                padding: 15px;
+            }
+        }
+        .chat-box-body{
+            @include bp(lg-max){
+                padding: 25px 15px;
+            }
+        }
+    }
+}
+.family-profile-detail {
+    .profile-content{
+        padding: 15px 15px;
+        .link-copy{
+            button{
+                margin-top: 0;
+            }
+        }
+    }
+}

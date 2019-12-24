@@ -1,0 +1,65 @@
+<app-inner-header></app-inner-header>
+<app-flagged-user-popup></app-flagged-user-popup>
+
+<div class="inner-page-wrapper">
+  <div class="container lg">
+    <div class="row">
+      <div class="col2 family_left_content">
+        <div class="page_info">
+          <h3>ELF's</h3>
+          <!-- <p>Lorem Ipsum is simply dummy</p> -->
+        </div>
+
+        <app-admin-menu></app-admin-menu>
+      </div>
+
+      <div class="col10">
+
+        <div class="search-bar">
+          <div class="search_left">
+            <i><img src="assets/images/search.svg" alt=""></i>
+            <input type="text" placeholder="Search with Name"  [(ngModel)]="searchValue">
+          </div>
+          <button class="search_btn">
+            <i>
+              <img src="assets/images/filter-icon.svg" alt="">
+              <!-- <em class="count">2</em> -->
+            </i>Filter
+          </button>
+        </div>
+
+        <div class="info-wrapper">
+          <div class="user-info-detail" *ngFor="let families of elfProfiles|searchbyname:searchValue">
+            <div class="img-block">
+              <a href="javascript:void(0)" class="img-inner"  (click)="elfProfilebyid(families)">
+                <img src={{families.photo}} alt="">
+              </a>
+              <span class="cyan_strip truncated" title={{families.organisation}}>{{ families.organisation }}</span>
+              <ul class="link-wrapper">
+                <li>
+                  <button class="like-icon" (click)="openFlaggedUserPopup();">
+                    <i><img src="assets/images/flag1.svg" alt=""></i>
+                  </button>
+
+                </li>
+                <li>
+                  <button class="like-icon">
+                    <i><img src="assets/images/chat-red.svg" alt=""></i>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="address-block"  (click)="elfProfilebyid(families)">
+              <h3>{{ families.user_name}}</h3>
+              <p>{{ families.city }}</p>
+            </div>
+          </div>
+          <h2 class="nodata" *ngIf="(elfProfiles | searchbyname: searchValue)?.length==0" style="color: red">Data not found</h2> 
+          <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+        </div>
+       
+      </div>
+
+    </div>
+  </div>
+</div>

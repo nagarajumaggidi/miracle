@@ -1,0 +1,22 @@
+::ng-deep .inner-header-nav, .inner-header-nav {
+  display: none;
+}
+
+.address-block {
+  outline: none !important;
+}
+
+.nodata{
+  
+  margin-left: 300px;
+  font-size: 250%;
+  margin-top: 150px;
+}
+
+.stylePagination{
+  float: right;
+}
+
+.ngx-pagination .current{
+  background: #cb5b58 !important;
+}

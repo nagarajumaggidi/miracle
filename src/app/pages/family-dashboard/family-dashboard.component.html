@@ -1,0 +1,182 @@
+<div class="family-inner-header">
+  <app-inner-header></app-inner-header>
+</div>
+<app-family-profile-view-popup></app-family-profile-view-popup>
+<app-unmatch-family></app-unmatch-family>
+<div class="inner-page-wrapper family-dashboard">
+  <div class="container lg">
+
+    <div class="row">
+      <div class="col2 family_left_content">
+
+        <div class="page_info">
+          <h3>Conversations</h3>
+          <!-- <p>Lorem Ipsum is simply dummy </p> -->
+        </div>
+        <div class="family_left_content_outer">
+          <div class="user_info_outer" *ngFor="let data of familymatchdata">
+            <i class="dp"><img src="{{familydatas.photo}}" alt=""></i>
+            <div class="user_info">
+               <h4>{{familydatas.name}}</h4>
+               <p>{{familydatas.address_line1}}{{familydatas.state}}</p>
+            </div>
+          </div>
+          <ul class="match_conversations">
+            <li>
+              <i><img src="assets/images/heart-red.svg" alt=""></i>
+              <span class="count">Elf</span>
+              <p>{{familydata.total_matches}}</p>
+            </li>
+            <li>
+              <i><img src="assets/images/chat-red.svg" alt=""></i>
+              <span class="count">Conversations</span>
+              <p>{{familydata.total_conversation}}</p>
+            </li>
+          </ul>
+        </div>
+        <div class="family_left_content_outer">
+          <h4>New Family Matches</h4>
+          <ul class="matched_familes">
+            <li *ngFor="let data of familymatchdata">
+              <a href="javascript:void(0)" class="user_with_status">
+                <i><img src={{data.photo}} alt=""></i>
+                <em class="status"></em>
+              </a>
+            </li>
+            <!-- <li>+24</li> -->
+          </ul>
+
+          <h4>Conversations</h4>
+          <p>Coming soon</p>
+          <!-- <ul class="conversations_list">
+
+            <li *ngFor="let list of conversationsList">
+              <a href="javascript:void(0)">
+                <div class="user_with_status">
+                  <i><img src={{list.img}} alt=""></i>
+                  <em class="status" *ngIf='list.status'></em>
+                </div>
+                <div class="conversations_details">
+                  <div class="name">
+                    <h4>{{ list.username }}</h4>
+                    <span class="time">{{list.time}}</span>
+                  </div>
+                  <p>{{list.chat}}</p>
+                </div>
+              </a>
+            </li>
+
+          </ul> -->
+        </div>
+      </div>
+      <!-- If there no matches make "noFamilyMatchFound" flag 'true'  -->
+      <div class="col8 chat-box-wrapper" *ngIf="!noFamilyMatchFound">
+        <span class="data" *ngIf="familymatchdata.length==0"> You have no matches yet!</span>
+        <div class="chat-box"  *ngFor="let data of familymatchdata">
+          <div class="chat-box-header">
+            <div class="left-header">
+              <div class="user_with_status">
+                <i><img src="{{data.photo}}" alt=""></i>
+                <em class="status"></em>
+              </div>
+              <h3>{{data.user_name}}</h3>
+            </div>
+            <button #refMatch class="flag-btn">
+              <i>
+                <img src="assets/images/flag.svg" alt="">
+              </i>
+            </button>
+          </div>
+          <div class="chat-box-body">
+            <div class="chat-request" *ngIf="!chatRequest">
+              <div class="chat-msg-wrapper">
+                <div class="user_with_status sm-profile">
+                  <i><img src="assets/images/user07.png" alt=""></i>
+                </div>
+                <div class="chat-msg">
+                  Your family has requested to chat with you. By accepting to the request, you agree to our terms and
+                  conditions. Do not give sensitive or personal information and you can block chat at anytime.
+                  <a [routerLink]="['/terms']" target="_blank">(Terms and conditions Link)</a>
+                </div>
+                <span class="msg-time">2:31 pm</span>
+              </div>
+              <div class="chat-msg-wrapper reply">
+                <div class="user_with_status sm-profile">
+                  <i><img src="assets/images/user07.png" alt=""></i>
+                </div>
+                <div class="chat-msg">
+                  Your family has requested to chat with you. By accepting to the request, you agree to our terms and
+                  conditions. Do not give sensitive or personal information and you can block chat at anytime.
+                  <a [routerLink]="['/terms']" target="_blank">(Terms and conditions Link)</a>
+                </div>
+                <span class="msg-time">2:31 pm</span>
+              </div>
+            </div>
+            <div class="start-chat" *ngIf="chatRequest">
+              <i><img src="assets/images/chat-icon.svg" alt=""></i>
+              <p>You matched with Joe Melany 10 days ago. Do not give sensitive or personal information and you can
+                block chat at anytime. <a [routerLink]="['/terms']" target="_blank" title="Terms and conditions">(Terms
+                  and conditions
+                  Link)</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="chat-footer">
+          <div class="btn-block two-button" *ngIf="!chatRequest">
+            <!-- <button class="grey-button btn" title="Decline">Decline</button> -->
+            <!-- <button class="orange-button btn" title="Accept" (click)="chatRequestAccpet()">Accept</button> -->
+          </div>
+          <div class="type-msg" *ngIf="chatRequest">
+            <button><img src="assets/images/emoji.svg" alt=""></button>
+            <input type="text" placeholder="Message Joe Melany">
+            <i>
+              <img src="assets/images/attach-file.svg" alt="">
+              <input type="file" class="file-input" />
+            </i>
+            <button (click)="chatRequestAccpet()"><img src="assets/images/send-msg.svg" alt=""></button>
+          </div>
+        </div>
+      </div>
+      <div class="col2" *ngIf="!noFamilyMatchFound">
+        <div class="family-profile-detail"  *ngFor="let data of familymatchdata">
+          <a href="javascript:void(0)" class="profile-image" (click)="openFamilyProfileViewPopup()">
+            <span class="cyan_strip">NYC Together</span>
+            <img src="{{data.photo}}" alt="">
+          </a>
+          <div class="profile-content">
+            <div class="address-block">
+              <h3>{{data.user_name}}</h3>
+              <p>{{data.address_line1}} {{data.state}}</p>
+            </div>
+            <p class="description">{{data.profile_bio}}</p>
+            <ul>
+              <!-- <li>
+                <h4>Desired Family Size</h4>
+                <p>2 Members, 3 Members &amp; 6 Members</p>
+              </li> -->
+              <li>
+                <h4>Maximum Budget</h4>
+                <p>{{data.budget}}</p>
+              </li>
+            </ul>
+          </div>
+          <div class="footer-btn">
+            <button class="grey-button btn" title="Unmatch" (click)="openUnmatchFamilyPopup()"><span><img
+                  src="assets/images/heart-filled - white.svg" alt=""></span>Unmatch</button>
+          </div>
+        </div>
+      </div>
+      <div class="col10" *ngIf="noFamilyMatchFound">
+          <div class="no-family-matches">
+              <img src="assets/images/no-matches-yet.svg" alt="">
+              <h2>You have no matches yet</h2>
+          </div>
+      </div>
+    </div>
+    <div class="col10">
+      <div class="static_position">
+        <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading> -->
+    </div>
+   </div>
+  </div>
+</div>
